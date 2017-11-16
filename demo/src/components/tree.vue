@@ -195,10 +195,10 @@
     },
     mounted() {
       // 关闭右键菜单
-      on(this.$el, 'contextmenu', (ev) => {
+      this.$el.addEventListener('contextmenu', (ev) => {
         ev.preventDefault();
         return false
-      })
+      } )
       // 代理点击 - 用于关闭菜单
       document.body.onclick = this.handleDocumentClick.bind(this)
     },
