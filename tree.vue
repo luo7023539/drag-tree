@@ -5,7 +5,6 @@
     <div v-if="root.length === 0">
       <p>请进行初始化</p>
     </div>
-    <transition name="el-fade-in">
       <div class="tree-operator" v-show="operator.visible" v-bind:style="operatorPosi" @click='handleOperatorClick($event)'>
         <div v-show="operator.left.visible">
           <slot name="left"></slot>
@@ -14,7 +13,6 @@
           <slot name="right"></slot>
         </div>
       </div>
-    </transition>
   </div>
 </template>
 
@@ -75,10 +73,6 @@
    */
   import treeNode from './TreeNode';
   // import { transition } from 'element-ui';
-  import {
-    on,
-    off
-  } from 'element-ui/src/utils/dom';
   export default {
     name: 'Tree',
     data() {
@@ -206,10 +200,10 @@
         return false
       })
       // 代理点击 - 用于关闭菜单
-      on(document, 'click', this.handleDocumentClick);
+      document.body.onclick = this.handleDocumentClick.bind(this)
     },
     destroyed() {
-      off(document, 'click', this.handleDocumentClick);
+      document.body.onclick = null
     }
   }
 </script>

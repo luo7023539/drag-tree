@@ -4,11 +4,7 @@
       <span v-show="!isLoading" :class='[isOpen ? "node-icon-expanded" : "", "node-icon"]' @click='toggle'></span>
       <span v-show="isLoading" class="el-icon-loading"></span>
       <span v-show='!isEditName' @dblclick='dblclick' @mousedown='handNodeMouseDown'>{{model.name}}</span>
-      <el-form v-show='isEditName' ref='form' :model='model' :rules='rules' style='display:inline-block'>
-        <el-form-item prop="name" size="small">
-          <el-input v-model='model.name'></el-input>
-        </el-form-item>
-      </el-form>
+      <input v-show='isEditName' type="text" v-model='model.name'>
     </div>
     <div class='treeMargin' v-show='isOpen' v-if='isFolder'>
       <tree-node v-for='model in model.children' :model='model' :key='model.id' :draggable="draggable">
